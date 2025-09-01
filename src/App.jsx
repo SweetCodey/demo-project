@@ -1,33 +1,35 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [isReady, setIsReady] = useState(false)
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="game-container">
+        <h1 className="get-ready-title">Get Ready!</h1>
+        <div className="game-info">
+          <h2>Flappy Bird</h2>
+          <div className="instructions">
+            <p>🐦 Tap or click to make the bird fly</p>
+            <p>🚫 Avoid the pipes</p>
+            <p>🏆 Score points by passing through gaps</p>
+          </div>
+          <div className="card">
+            <button 
+              onClick={() => setIsReady(!isReady)}
+              className={`ready-button ${isReady ? 'ready' : ''}`}
+            >
+              {isReady ? '✅ Ready to Play!' : '🎮 Click when Ready'}
+            </button>
+            {isReady && (
+              <p className="start-message">
+                Great! The Flappy Bird game will be created here.
+              </p>
+            )}
+          </div>
+        </div>
       </div>
-      <h1>Get Ready to make the Flappy Bird Game!</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
